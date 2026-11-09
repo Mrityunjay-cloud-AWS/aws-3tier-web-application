@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employees</title>
+</head>
+<body>
+    <h1>Employee Records</h1>
+
+    <form action="/add" method="POST">
+        <input type="text" name="name" placeholder="Employee Name" required>
+        <input type="email" name="email" placeholder="Employee Email" required>
+        <button type="submit">Add Employee</button>
+    </form>
+
+    <h2>Employee List</h2>
+
+    {% for employee in employees %}
+        <p>{{ employee.name }} - {{ employee.email }}</p>
+    {% else %}
+        <p>No employees found.</p>
+    {% endfor %}
+
+    <a href="/">Home</a>
+</body>
+</html>

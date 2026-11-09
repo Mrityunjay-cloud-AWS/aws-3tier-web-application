@@ -1,6 +1,87 @@
-##  AWS Three-Tier Web Application
+# AWS Three-Tier Web Application
 
+## Project Overview
+
+This project demonstrates a secure three-tier web application architecture using AWS services.
+
+## Architecture
+
+1. Presentation Layer: Application Load Balancer in public subnets.
+2. Application Layer: EC2 instances in private application subnets.
+3. Database Layer: Amazon RDS MySQL in private database subnets.
+
+## AWS Services and Progress
+
+| Service | Purpose | Status |
+|---|---|---|
+| VPC | Isolated network | Created |
+| Subnets | Network segmentation | Created |
+| Internet Gateway | Public internet connectivity | Created |
+| Route Tables | Network routing | Created |
+| Security Groups | Network security | Created |
+| IAM Role | EC2 permissions | Created |
+| Launch Template | EC2 configuration | Created |
+| Target Group | Application targets | Created |
+| Auto Scaling Group | Instance management | Created |
+| RDS Subnet Group | Database networking | Created |
+| Flask Application | Web application | Created locally |
+| NAT Gateway | Private subnet outbound access | Pending |
+| EC2 Instances | Application hosting | Pending |
+| RDS MySQL | Database | Pending |
+| Application Load Balancer | Traffic distribution | Pending |
+| CloudWatch | Monitoring | Pending |
+
+## Network Architecture
+
+VPC CIDR: `10.0.0.0/16`
+
+| Subnet | CIDR | Purpose |
+|---|---|---|
+| p1-public-a | 10.0.1.0/24 | Public |
+| p1-public-b | 10.0.2.0/24 | Public |
+| p1-app-a | 10.0.11.0/24 | Application |
+| p1-app-b | 10.0.12.0/24 | Application |
+| p1-db-a | 10.0.21.0/24 | Database |
+| p1-db-b | 10.0.22.0/24 | Database |
+
+## Security
+
+- Application instances will run in private subnets.
+- RDS will not have public access.
+- ALB traffic will be controlled using Security Groups.
+- Database access will be restricted to the application Security Group.
+- EC2 uses an IAM role.
+- IMDSv2 is required.
+
+## Application
+
+The application uses:
+- Python
+- Flask
+- MySQL Connector
+- Gunicorn
+
+Application files are stored in the `app/` directory.
+
+## Current Progress
+
+- AWS networking infrastructure created.
+- Security Groups and IAM configured.
+- Launch Template and Auto Scaling Group created.
+- Flask application created and tested locally.
+- AWS application deployment pending.
+- RDS database deployment pending.
+- End-to-end testing pending.
+
+## Cost Management
+
+Billable resources will be deployed for a controlled testing period and removed after validation.
  # Project Overview
+=======
+ ## AWS Three-Tier Web Application
+
+ #Project Overview
+>>>>>>> 71c48a0 (Add Flask application)
 
 
 
