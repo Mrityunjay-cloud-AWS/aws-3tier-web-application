@@ -1,38 +1,43 @@
+# AWS Three-Tier Web Application
 
-# Project Overview
+## Project Overview
 
-This project demonstrates a secure three-tier web application architecture using AWS services.
+This project demonstrates the design and deployment of a secure, highly available three-tier web application on Amazon Web Services (AWS).
+
+The application uses Flask and MySQL and is deployed across multiple Availability Zones using private and public subnets, an Application Load Balancer, and an Auto Scaling Group.
 
 ## Architecture
 
-1. Presentation Layer: Application Load Balancer in public subnets.
-2. Application Layer: EC2 instances in private application subnets.
-3. Database Layer: Amazon RDS MySQL in private database subnets.
+The application follows a three-tier architecture:
 
-### AWS Services and Progress
+1. **Presentation Layer:** Application Load Balancer deployed in public subnets.
+2. **Application Layer:** EC2 instances running Flask, deployed in private application subnets and managed by an Auto Scaling Group.
+3. **Database Layer:** Amazon RDS for MySQL deployed in private database subnets.
 
-| Service | Purpose | Status |
+## AWS Services Used
+
+| AWS Service | Purpose | Status |
 |---|---|---|
-| VPC | Isolated network | Created |
-| Subnets | Network segmentation | Created |
-| Internet Gateway | Public internet connectivity | Created |
-| Route Tables | Network routing | Created |
-| Security Groups | Network security | Created |
-| IAM Role | EC2 permissions | Created |
-| Launch Template | EC2 configuration | Created |
-| Target Group | Application targets | Created |
-| Auto Scaling Group | Instance management | Created |
-| RDS Subnet Group | Database networking | Created |
-| Flask Application | Web application | Created locally |
-| NAT Gateway | Private subnet outbound access | Pending |
-| EC2 Instances | Application hosting | Pending |
-| RDS MySQL | Database | Pending |
-| Application Load Balancer | Traffic distribution | Pending |
-| CloudWatch | Monitoring | Pending |
+| Amazon VPC | Isolated network | Completed |
+| Subnets | Network segmentation | Completed |
+| Internet Gateway | Public internet connectivity | Completed |
+| NAT Gateway | Outbound internet access for private instances | Completed |
+| Route Tables | Network routing | Completed |
+| Security Groups | Network access control | Completed |
+| IAM Role | EC2 permissions | Completed |
+| EC2 Launch Template | Instance configuration | Completed |
+| Auto Scaling Group | Instance management and scaling | Completed |
+| Application Load Balancer | Traffic distribution | Completed |
+| Target Group | Application health checks | Completed |
+| Amazon RDS MySQL | Managed relational database | Completed |
+| Flask Application | Web application | Deployed |
+| Amazon CloudWatch | Monitoring and dashboards | Completed |
+| CloudWatch Alarms | Resource alerts | Completed |
+| Amazon SNS | Email notifications | Configured |
 
 ## Network Architecture
 
-VPC CIDR: `10.0.0.0/16`
+**VPC CIDR:** `10.0.0.0/16`
 
 | Subnet | CIDR | Purpose |
 |---|---|---|
@@ -43,150 +48,89 @@ VPC CIDR: `10.0.0.0/16`
 | p1-db-a | 10.0.21.0/24 | Database |
 | p1-db-b | 10.0.22.0/24 | Database |
 
-## Security
+## Application Technology
 
-- Application instances will run in private subnets.
-- RDS will not have public access.
-- ALB traffic will be controlled using Security Groups.
-- Database access will be restricted to the application Security Group.
-- EC2 uses an IAM role.
-- IMDSv2 is required.
-
-## Application
-
-The application uses:
 - Python
 - Flask
+- MySQL
 - MySQL Connector
 - Gunicorn
+- Nginx
 
-Application files are stored in the `app/` directory.
+Application source code is stored in the `app/` directory.
 
-## Current Progress
+## Security Design
 
-- AWS networking infrastructure created.
-- Security Groups and IAM configured.
-- Launch Template and Auto Scaling Group created.
-- Flask application created and tested locally.
-- AWS application deployment pending.
-- RDS database deployment pending.
-- End-to-end testing pending.
+- Application instances are deployed in private subnets.
+- RDS is configured without public access.
+- ALB accepts HTTP traffic through its security group.
+- Application instances accept traffic from the ALB security group.
+- Database access is restricted to the application security group.
+- EC2 instances use an IAM role.
+- IMDSv2 is required in the EC2 Launch Template.
+
+## Load Balancing and Auto Scaling
+
+- Application traffic is distributed through an Application Load Balancer.
+- The target group performs application health checks.
+- EC2 instances are managed by an Auto Scaling Group.
+- Target tracking scaling uses average CPU utilization with a 50% target.
+- Configured Auto Scaling capacity: Minimum 2, Desired 2, Maximum 4.
+
+## Database
+
+Amazon RDS for MySQL is used as the application's managed relational database.
+
+The Flask application connects to RDS through the private network using database connection environment variables.
+
+Database credentials are not stored in the GitHub repository.
+
+## Monitoring and Alerting
+
+Amazon CloudWatch is used to monitor:
+
+- EC2 CPU utilization
+- ALB healthy and unhealthy hosts
+- ALB request count
+- RDS CPU utilization
+- RDS database connections
+- RDS free storage
+
+CloudWatch alarms are configured to send notifications through Amazon SNS.
+
+## Application Validation
+
+The deployed application was tested through the Application Load Balancer.
+
+The following functionality was verified:
+
+- Application accessibility through the ALB.
+- Flask application running on EC2.
+- Connectivity between EC2 and RDS.
+- Employee record insertion into MySQL.
+- Employee records displayed by the web application.
 
 ## Cost Management
 
-Billable resources will be deployed for a controlled testing period and removed after validation.
- # Project Overview
-=======
- ## AWS Three-Tier Web Application
+AWS resources were deployed for project development and testing.
 
- #Project Overview
->>>>>>> 71c48a0 (Add Flask application)
+Billable resources should be stopped or deleted after evidence and documentation have been preserved.
 
+## Repository Structure
 
+```text
+aws-3tier-web-application/
+├── app/
+│   ├── app.py
+│   ├── db.py
+│   ├── requirements.txt
+│   ├── static/
+│   └── templates/
+├── docs/
+├── .gitignore
+└── README.md
+```
 
-# This project demonstrates the design and deployment of a three-tier web application on AWS using secure networking, compute, database, load balancing, and monitoring services.
+## Security Note
 
-# 
-
-# \## Architecture
-
-# 
-
-# The application follows a three-tier architecture:
-
-# 
-
-# 1\. Presentation Layer: Application Load Balancer (public subnets).
-
-# 2\. Application Layer: EC2 instances managed by an Auto Scaling Group (private application subnets).
-
-# 3\. Database Layer: Amazon RDS MySQL (private database subnets).
-
-# 
-
-# \## AWS Services
-
-# 
-
-# | AWS Service | Purpose | Status |
-
-# |---|---|---|
-
-# | Amazon VPC | Isolated network | Created |
-
-# | Subnets | Public, application and database layers | Created |
-
-# | Internet Gateway | Internet connectivity for public subnets | Created |
-
-# | Route Tables | Network traffic routing | Created |
-
-# | Security Groups | Network access control | Created |
-
-# | IAM Role | EC2 permissions | Created |
-
-# | EC2 Launch Template | Instance configuration | Created |
-
-# | Target Group | Application target registration | Created |
-
-# | Auto Scaling Group | EC2 scaling and management | Created, desired capacity 0 |
-
-# | RDS Subnet Group | Database network placement | Created |
-
-# | NAT Gateway | Outbound internet for private instances | Pending |
-
-# | EC2 Instances | Application compute | Pending |
-
-# | Amazon RDS | MySQL database | Pending |
-
-# | Application Load Balancer | Application traffic distribution | Pending |
-
-# | CloudWatch Alarms | Monitoring and alerts | Pending |
-
-# 
-
-# \## Network Architecture
-
-# 
-
-# VPC CIDR: `10.0.0.0/16`
-
-# 
-
-# | Subnet | CIDR | Purpose |
-
-# |---|---|---|
-
-# | p1-public-a | 10.0.1.0/24 | Public |
-
-# | p1-public-b | 10.0.2.0/24 | Public |
-
-# | p1-app-a | 10.0.11.0/24 | Application |
-
-# | p1-app-b | 10.0.12.0/24 | Application |
-
-# | p1-db-a | 10.0.21.0/24 | Database |
-
-# | p1-db-b | 10.0.22.0/24 | Database |
-
-# 
-
-# \## Security Design
-
-# 
-
-# \- Application instances are planned for private subnets.
-
-# \- Database instances will not have public access.
-
-# \- ALB traffic will be permitted through the ALB security group.
-
-# \- Application traffic will be permitted from the ALB security group.
-
-# \- Database traffic will be permitted from the application security group.
-
-# \- EC2 instances use an IAM role.
-
-# \- IMDSv2 is required in the EC2 Launch Template.
-
-# \- Secrets and credentials must never be committed to GitHub.
-
+Never commit database passwords, AWS access keys, secret keys, or other sensitive credentials to GitHub.
