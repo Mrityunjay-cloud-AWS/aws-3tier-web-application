@@ -165,6 +165,8 @@ The deployed Flask employee application, demonstrating successful employee recor
 
 ![RDS Database](docs/screenshots/Database.png)
 
+![AWS Three-Tier Architecture](docs/aws-three-tier-architecture.png)
+
 ### Monitoring
 
 **CloudWatch Dashboard**
