@@ -134,3 +134,39 @@ aws-3tier-web-application/
 ## Security Note
 
 Never commit database passwords, AWS access keys, secret keys, or other sensitive credentials to GitHub.
+
+## Project Screenshots
+
+### Application
+
+The deployed Flask employee application, demonstrating successful employee record insertion.
+
+![Working Employee Application](docs/screenshots/employee-added-successfully.png)
+
+### AWS Infrastructure
+
+**VPC Configuration**
+
+![VPC Configuration](docs/screenshots/VPC-configuration.png)
+
+**EC2 Instances**
+
+![EC2 Instances](docs/screenshots/EC2-instances.png)
+
+**Application Load Balancer**
+
+![Application Load Balancer](docs/screenshots/Loadbalancer.png)
+
+**Auto Scaling Group**
+
+![Auto Scaling Group](docs/screenshots/ASG.png)
+
+**Amazon RDS Database**
+
+![RDS Database](docs/screenshots/Database.png)
+
+### Monitoring
+
+**CloudWatch Dashboard**
+
+![CloudWatch Dashboard](docs/screenshots/Cloud-watch-dashboard.png)
