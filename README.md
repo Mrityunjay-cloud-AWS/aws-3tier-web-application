@@ -1,6 +1,5 @@
-# AWS Three-Tier Web Application
 
-## Project Overview
+# Project Overview
 
 This project demonstrates a secure three-tier web application architecture using AWS services.
 
@@ -10,7 +9,7 @@ This project demonstrates a secure three-tier web application architecture using
 2. Application Layer: EC2 instances in private application subnets.
 3. Database Layer: Amazon RDS MySQL in private database subnets.
 
-## AWS Services and Progress
+### AWS Services and Progress
 
 | Service | Purpose | Status |
 |---|---|---|
