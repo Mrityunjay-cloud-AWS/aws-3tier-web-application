@@ -4,8 +4,7 @@
 
 This project demonstrates the design and deployment of a secure, highly available three-tier web application on Amazon Web Services (AWS).
 
-The application uses Flask and MySQL and is deployed across multiple Availability Zones using private and public subnets, an Application Load Balancer, and an Auto Scaling Group.
-
+The application uses Flask and MySQL and is deployed across multiple Availability Zones using private and public subnets, an Application Load Balancer, and an Auto Scaling Group. Infrastructure designed and built by me; Flask application code generated with AI assistance
 ## Architecture
 
 The application follows a three-tier architecture:
